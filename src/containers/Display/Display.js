@@ -13,9 +13,8 @@ class display extends Component {
 
     render(){
         return (<div className="Display">
-            <p>{this.parentController.getMessage()}</p>
-            <Card/>
-        </div>);
+                    <Card/>
+                </div>);
     }
 
 };

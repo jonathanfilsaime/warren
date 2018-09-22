@@ -12,7 +12,12 @@ import AppController from "../../AppController";
 const styles = {
     card: {
         maxWidth: 275,
-        maxHeight: 275,
+        maxHeight: 200,
+        minWidth: 275,
+        minHeight: 200,
+        margin: 10,
+        flexGrow: 1,
+        display: 'inline-block',
     },
     bullet: {
         display: 'inline-block',
@@ -28,35 +33,22 @@ const styles = {
     },
 };
 
-function SimpleCard(props, parentController) {
+function SimpleCard(props, symbol, price) {
     const { classes } = props;
-    const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <Card className={classes.card}>
             <CardContent>
-                <Typography className={classes.title} color="textSecondary">
-                    {parentController.getMessage()}
-                </Typography>
                 <Typography variant="headline" component="h2">
-                    be
-                    {bull}
-                    nev
-                    {bull}o{bull}
-                    lent
+                    {symbol}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                     adjective
                 </Typography>
                 <Typography component="p">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
+                    {price}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
         </Card>
     );
 }
@@ -73,7 +65,11 @@ class SimpleCardClass extends Component{
 
 
     render(){
-        return SimpleCard(this.props, this.parentController)
+        let count = -1;
+        return this.parentController.getSymbol().map(e => {console.log("-->"+e);
+                                                            count++;
+                                                            return SimpleCard(this.props, e, this.parentController.getPrice()[count])})
+
     }
 }
 

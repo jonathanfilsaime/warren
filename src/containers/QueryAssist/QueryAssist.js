@@ -19,7 +19,7 @@ injectGlobal`
 const Container = styled('div')`
   background: #282B37;
   width: 100vw;
-  height: 15vh;
+  height: 10vh;
   padding: 20px;
 `
 
@@ -81,9 +81,13 @@ class AssistSearch extends Component {
 
     setData = () => {
         axios.get('https://sherlock-warren-db.firebaseio.com/.json', { crossdomain: true })
-        .then(response => {console.log(response)})
-        .catch(error => {console.log(error)})
-    }
+        .then(response => {Object.keys(response.data.Company).map(name =>
+                          {console.log(response.data.Company[name]["Price"]);
+                           console.log(response.data.Company[name]["Symbol"]);
+                           this.controller.setSymbol(response.data.Company[name]["Symbol"]);
+                           this.controller.setPrice(response.data.Company[name]["Price"]);})})
+        .catch(error => {console.log(error); })
+    };
 
 
 
@@ -128,10 +132,9 @@ class AssistSearch extends Component {
 
         return (
             <Container>
-                <Title>Warren</Title>
                 <Assist
                     placeholder='Search Logs ⌘ ⇧ F'
-                    onSubmit={query => {this.controller.setMessage(query); this.setData()}}
+                    onSubmit={query => {this.setData();}}
                     data={data}
                     inputProps={inputProps}
                     dropdownProps={dropdownProps}
