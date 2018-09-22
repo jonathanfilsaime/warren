@@ -3,6 +3,7 @@ import { observer} from 'controllerim';
 import {Controller} from 'controllerim';
 import './Display.css'
 import AppController from "../../AppController";
+import Card from '../Card/Card'
 
 class display extends Component {
     componentWillMount() {
@@ -11,7 +12,10 @@ class display extends Component {
     }
 
     render(){
-        return (<div className="Display"><p>{this.parentController.getMessage()}</p></div>);
+        return (<div className="Display">
+            <p>{this.parentController.getMessage()}</p>
+            <Card/>
+        </div>);
     }
 
 };

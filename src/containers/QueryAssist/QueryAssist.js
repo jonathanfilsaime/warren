@@ -5,6 +5,7 @@ import QueryAssist from 'react-query-assist'
 import { observer } from 'controllerim';
 import AppController from '../../AppController'
 import Display from "../Display/Display";
+import axios from 'axios';
 
 injectGlobal`
   * {
@@ -78,6 +79,12 @@ class AssistSearch extends Component {
         this.controller = new AppController(this);
     }
 
+    setData = () => {
+        axios.get('https://sherlock-warren-db.firebaseio.com/.json', { crossdomain: true })
+        .then(response => {console.log(response)})
+        .catch(error => {console.log(error)})
+    }
+
 
 
     render () {
@@ -124,7 +131,7 @@ class AssistSearch extends Component {
                 <Title>Warren</Title>
                 <Assist
                     placeholder='Search Logs ⌘ ⇧ F'
-                    onSubmit={query => {this.controller.setMessage(query); console.log(`-----> ${this.controller.getMessage()}`)}}
+                    onSubmit={query => {this.controller.setMessage(query); this.setData()}}
                     data={data}
                     inputProps={inputProps}
                     dropdownProps={dropdownProps}
