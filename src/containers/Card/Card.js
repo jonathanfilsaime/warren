@@ -63,12 +63,11 @@ class SimpleCardClass extends Component{
         console.log(this.parentController)
     }
 
-
     render(){
         let count = -1;
-        return this.parentController.getSymbol().map(e => {console.log("-->"+e);
-                                                            count++;
-                                                            return SimpleCard(this.props, e, this.parentController.getPrice()[count])})
+        return this.parentController.getSymbol().map(symbol =>
+            {count++;
+            return SimpleCard(this.props, symbol, this.parentController.getPrice()[count])});
 
     }
 }
