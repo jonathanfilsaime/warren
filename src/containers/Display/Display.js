@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import { observer} from 'controllerim';
 import {Controller} from 'controllerim';
 import './Display.css'
-import AppController from "../../AppController";
-import Card from '../Card/Card'
+import AppController from '../../AppController';
+import Card from '../Card/Card';
+// import SimpleCard from '../SimpleCard/SimpleCard'
 
 class display extends Component {
     componentWillMount() {

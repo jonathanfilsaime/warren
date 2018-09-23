@@ -54,22 +54,34 @@ const data = [
     {
         name: 'Find',
         type: 'string',
-        enumerations: ['equities', 'bonds', 'private company', 'start ups']
+        enumerations: ['Top10Stocks', 'Top50Stocks', 'Top100Stocks', 'AllStocks']
     },
     {
         name: 'Where',
         type: 'string',
-        enumerations: ['revenues', 'profits', 'market cap']
+        enumerations: ['GrossProfit','CostOfRevenue','OperatingRevenue','TotalRevenue','OperatingIncome','NetIncome',
+            'ResearchAndDevelopment', 'OperatingExpense','CurrentAssets','TotalAssets','TotalLiabilities',
+            'CurrentCash','CurrentDebt','TotalCash','TotalDebt','ShareholderEquity','CashChange','CashFlow','OperatingGainsLosses']
     },
     {
         name: 'is',
         type: 'string',
-        enumerations: ['greater', 'less', 'equal']
+        enumerations: ['greater', 'less']
     },
     {
-        name: '$',
-        type: 'int',
-        enumerations: ['1000000','1000000000']
+        name: 'Than',
+        type: 'string',
+        enumerations: ['0.01','0.1','0.5','1','2','3', '4', '5','6','7','8', '9','10','15','20','25', '50','100',
+                        '$1,000,000','$10,000,000','$100,000,000','$1,000,000,000','$5,000,000,000','$10,000,000,000',
+                        '$50,000,000,000','$100,000,000,000','$200,000,000,000','$300,000,000,000','$500,000,000,000']
+    },
+    {
+        name: 'When',
+        type: 'string',
+        enumerations: ['CurrentRatio','Acid-TestRatio','CashRatio','OperatingCashFlowRatio','DebtRatio','DebtToEquityRatio',
+            'InterestCoverageRatio', 'DebtServiceCoverageRatio','AssetTurnoverRatio','InventoryTurnoverRatio','ReceivablesTurnoverRatio',
+            'DaysSalesInInventoryRatio','GrossMarginRatio','OperatingMarginRatio','ReturnOnAssetsRatio','ReturnOnEquityRatio',
+            'BookValuePerShareRatio','DividendYieldRatio','EarningsPerShareRatio','Price-EarningsRatio']
     }
 ]
 
