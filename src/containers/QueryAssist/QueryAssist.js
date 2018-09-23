@@ -61,7 +61,8 @@ const data = [
         type: 'string',
         enumerations: ['GrossProfit','CostOfRevenue','OperatingRevenue','TotalRevenue','OperatingIncome','NetIncome',
             'ResearchAndDevelopment', 'OperatingExpense','CurrentAssets','TotalAssets','TotalLiabilities',
-            'CurrentCash','CurrentDebt','TotalCash','TotalDebt','ShareholderEquity','CashChange','CashFlow','OperatingGainsLosses']
+            'CurrentCash','CurrentDebt','TotalCash','TotalDebt','ShareholderEquity','CashChange','CashFlow',
+            'OperatingGainsLosses']
     },
     {
         name: 'is',
@@ -79,9 +80,10 @@ const data = [
         name: 'When',
         type: 'string',
         enumerations: ['CurrentRatio','Acid-TestRatio','CashRatio','OperatingCashFlowRatio','DebtRatio','DebtToEquityRatio',
-            'InterestCoverageRatio', 'DebtServiceCoverageRatio','AssetTurnoverRatio','InventoryTurnoverRatio','ReceivablesTurnoverRatio',
-            'DaysSalesInInventoryRatio','GrossMarginRatio','OperatingMarginRatio','ReturnOnAssetsRatio','ReturnOnEquityRatio',
-            'BookValuePerShareRatio','DividendYieldRatio','EarningsPerShareRatio','Price-EarningsRatio']
+            'InterestCoverageRatio', 'DebtServiceCoverageRatio','AssetTurnoverRatio','InventoryTurnoverRatio',
+            'ReceivablesTurnoverRatio', 'DaysSalesInInventoryRatio','GrossMarginRatio','OperatingMarginRatio',
+            'ReturnOnAssetsRatio','ReturnOnEquityRatio', 'BookValuePerShareRatio','DividendYieldRatio',
+            'EarningsPerShareRatio','Price-EarningsRatio']
     }
 ]
 
@@ -143,7 +145,8 @@ class AssistSearch extends Component {
         return (
             <Container>
                 <Assist
-                    placeholder='Search Logs ⌘ ⇧ F'
+                    placeholder=
+                    'Find:Top50Stocks Where:TotalRevenue is:greater Than:$100,000,000,000 When:DebtToEquityRatio is:less Than:2'
                     onSubmit={query => {this.setData();}}
                     data={data}
                     inputProps={inputProps}
