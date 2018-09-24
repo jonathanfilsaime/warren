@@ -156,6 +156,7 @@ class AssistSearch extends Component {
                 <Display/>
             </Container>
         )
+
     }
 }
 
