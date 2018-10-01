@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Controller, observer} from "controllerim";
 import AppController from "../../AppController";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 const styles = {
     card: {
@@ -33,8 +34,8 @@ const styles = {
     },
 };
 
-function SimpleCard(props, symbol, price) {
-    const { classes } = props;
+function SimpleCard(props) {
+    const { classes, price, symbol } = props;
 
     return (
         <Card className={classes.card}>
@@ -57,19 +58,30 @@ SimpleCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-class SimpleCardClass extends Component{
-    componentWillMount() {
-        this.parentController =  Controller.getParentController(this, AppController.name);
-        console.log(this.parentController)
-    }
+SimpleCard = withStyles(styles)(SimpleCard);
 
-    render(){
-        let count = -1;
-        return this.parentController.getSymbol().map(symbol =>
-            {count++;
-            return SimpleCard(this.props, symbol, this.parentController.getPrice()[count])});
 
-    }
-}
+export default SimpleCard;
 
-export default withStyles(styles)(observer(SimpleCardClass));
+
+{/*<React.Fragment>*/}
+    {/*<ReactCSSTransitionGroup*/}
+        {/*transitionName="example"*/}
+        {/*transitionEnterTimeout={2000}*/}
+        {/*transitionLeaveTimeout={300}>*/}
+        {/*<Card className={classes.card}>*/}
+            {/*<CardContent>*/}
+                {/*<Typography variant="headline" component="h2">*/}
+                    {/*{symbol}*/}
+                {/*</Typography>*/}
+                {/*<Typography className={classes.pos} color="textSecondary">*/}
+                    {/*adjective*/}
+                {/*</Typography>*/}
+                {/*<Typography component="p">*/}
+                    {/*{price}*/}
+                {/*</Typography>*/}
+            {/*</CardContent>*/}
+        {/*</Card>*/}
+    {/*</ReactCSSTransitionGroup>*/}
+// </React.Fragment>
+

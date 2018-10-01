@@ -8,10 +8,12 @@
     "controllerim": "^1.62.0",
     "emotion": "^9.2.10",
     "react": "^16.5.2",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.5.2",
     "react-emotion": "^9.2.10",
     "react-query-assist": "^1.2.0",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "react-transition-group": "^2.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

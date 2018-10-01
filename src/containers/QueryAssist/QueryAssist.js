@@ -147,7 +147,7 @@ class AssistSearch extends Component {
                 <Assist
                     placeholder=
                     'Find:Top50Stocks Where:TotalRevenue is:greater Than:$100,000,000,000 When:DebtToEquityRatio is:less Than:2'
-                    onSubmit={query => {this.setData();}}
+                    onSubmit={query => {this.setData(); this.controller.clearController();}}
                     data={data}
                     inputProps={inputProps}
                     dropdownProps={dropdownProps}

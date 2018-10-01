@@ -27,6 +27,11 @@ class AppController extends Controller{
         this.state.price.push(value);
     }
 
+    clearController(){
+        this.state.symbol =[];
+        this.state.price =[];
+    }
+
 }
 
 export default AppController;
