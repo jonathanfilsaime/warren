@@ -5,7 +5,7 @@ class AppController extends Controller{
         super(comp);
         this.state = {
             symbol: [],
-            price: []
+            price: [],
         };
     }
 

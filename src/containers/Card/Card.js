@@ -1,21 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {Controller, observer} from "controllerim";
-import AppController from "../../AppController";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 const styles = {
     card: {
         maxWidth: 275,
         maxHeight: 200,
-        minWidth: 275,
-        minHeight: 200,
+        minWidth: 180,
+        minHeight: 220,
         margin: 10,
         flexGrow: 1,
         display: 'inline-block',
@@ -36,17 +31,12 @@ const styles = {
 
 function SimpleCard(props) {
     const { classes, price, symbol } = props;
-
+    const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
     return (
         <Card className={classes.card}>
             <CardContent>
+                <img src={source}/>
                 <Typography variant="headline" component="h2">
-                    {symbol}
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    adjective
-                </Typography>
-                <Typography component="p">
                     {price}
                 </Typography>
             </CardContent>
@@ -60,28 +50,4 @@ SimpleCard.propTypes = {
 
 SimpleCard = withStyles(styles)(SimpleCard);
 
-
 export default SimpleCard;
-
-
-{/*<React.Fragment>*/}
-    {/*<ReactCSSTransitionGroup*/}
-        {/*transitionName="example"*/}
-        {/*transitionEnterTimeout={2000}*/}
-        {/*transitionLeaveTimeout={300}>*/}
-        {/*<Card className={classes.card}>*/}
-            {/*<CardContent>*/}
-                {/*<Typography variant="headline" component="h2">*/}
-                    {/*{symbol}*/}
-                {/*</Typography>*/}
-                {/*<Typography className={classes.pos} color="textSecondary">*/}
-                    {/*adjective*/}
-                {/*</Typography>*/}
-                {/*<Typography component="p">*/}
-                    {/*{price}*/}
-                {/*</Typography>*/}
-            {/*</CardContent>*/}
-        {/*</Card>*/}
-    {/*</ReactCSSTransitionGroup>*/}
-// </React.Fragment>
-
