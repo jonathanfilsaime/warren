@@ -36,7 +36,9 @@ function SimpleCard(props) {
         <Card className={classes.card}>
             <CardContent>
                 <img src={source}/>
-                <Typography variant="headline" component="h2">
+                <br/>
+                <br/>
+                <Typography variant="headline" component="h2" align="center">
                     {price}
                 </Typography>
             </CardContent>
