@@ -10,10 +10,7 @@ class SimpleCardClass extends Component {
 
     componentWillMount() {
         this.parentController =  Controller.getParentController(this, AppController.name);
-        console.log(this.parentController)
     }
-
-
 
     render(){
         let count = -1;
@@ -33,7 +30,7 @@ class SimpleCardClass extends Component {
             <React.Fragment>
                 <ReactCSSTransitionGroup
                     transitionName="example"
-                    transitionEnterTimeout={5000}
+                    transitionEnterTimeout={2000}
                     transitionLeaveTimeout={300}>
                     {items}
                 </ReactCSSTransitionGroup>

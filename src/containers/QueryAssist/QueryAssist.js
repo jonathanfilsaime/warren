@@ -73,8 +73,8 @@ const data = [
         name: 'Than',
         type: 'string',
         enumerations: ['0.01','0.1','0.5','1','2','3', '4', '5','6','7','8', '9','10','15','20','25', '50','100',
-                        '$1,000,000','$10,000,000','$100,000,000','$1,000,000,000','$5,000,000,000','$10,000,000,000',
-                        '$50,000,000,000','$100,000,000,000','$200,000,000,000','$300,000,000,000','$500,000,000,000']
+            '$1,000,000','$10,000,000','$100,000,000','$1,000,000,000','$5,000,000,000','$10,000,000,000',
+            '$50,000,000,000','$100,000,000,000','$200,000,000,000','$300,000,000,000','$500,000,000,000']
     },
     {
         name: 'When',
@@ -95,10 +95,10 @@ class AssistSearch extends Component {
 
     setData = () => {
         axios.get('https://sherlock-warren-db.firebaseio.com/.json', { crossdomain: true })
-        .then(response => {Object.keys(response.data.Company).map(name =>
-                          {this.controller.setSymbol(response.data.Company[name]["Symbol"]);
-                           this.controller.setPrice(response.data.Company[name]["Price"]);})})
-        .catch(error => {console.log(error); })
+            .then(response => {Object.keys(response.data.Company).map(name =>
+            {this.controller.setSymbol(response.data.Company[name]["Symbol"]);
+                this.controller.setPrice(response.data.Company[name]["Price"]);})})
+            .catch(error => {console.log(error); })
     };
 
 
@@ -146,8 +146,8 @@ class AssistSearch extends Component {
             <Container>
                 <Assist
                     placeholder=
-                    'Find:Top50Stocks Where:TotalRevenue is:greater Than:$100,000,000,000 When:DebtToEquityRatio is:less Than:2'
-                    onSubmit={query => {this.setData(); this.controller.clearController();}}
+                        'Find:Top50Stocks Where:TotalRevenue is:greater Than:$100,000,000,000 When:DebtToEquityRatio is:less Than:2'
+                    onSubmit={query => {this.setData(); this.controller.clearController(); console.log(query)}}
                     data={data}
                     inputProps={inputProps}
                     dropdownProps={dropdownProps}

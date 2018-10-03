@@ -4,13 +4,15 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Bookmark from './Bookmark'
+import Open from './Open'
 
 const styles = {
     card: {
         maxWidth: 275,
         maxHeight: 200,
         minWidth: 180,
-        minHeight: 220,
+        minHeight: 250,
         margin: 10,
         flexGrow: 1,
         display: 'inline-block',
@@ -29,6 +31,16 @@ const styles = {
     },
 };
 
+const divStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+}
+
+const priceStyle = {
+    fontFamily: ''
+}
+
 function SimpleCard(props) {
     const { classes, price, symbol } = props;
     const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
@@ -41,6 +53,10 @@ function SimpleCard(props) {
                 <Typography variant="headline" component="h2" align="center">
                     {price}
                 </Typography>
+                <div style={divStyle}>
+                    <Bookmark/>
+                    <Open/>
+                </div>
             </CardContent>
         </Card>
     );
