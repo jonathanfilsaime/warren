@@ -28,12 +28,12 @@ class SimpleCardClass extends Component {
 
         return (
             <React.Fragment>
-                <ReactCSSTransitionGroup
-                    transitionName="example"
-                    transitionEnterTimeout={2000}
-                    transitionLeaveTimeout={300}>
+                {/*<ReactCSSTransitionGroup*/}
+                    {/*transitionName="example"*/}
+                    {/*transitionEnterTimeout={0}*/}
+                    {/*transitionLeaveTimeout={0}>*/}
                     {items}
-                </ReactCSSTransitionGroup>
+                {/*</ReactCSSTransitionGroup>*/}
             </React.Fragment>
         );
     }

@@ -9,8 +9,8 @@ import Open from './Open'
 
 const styles = {
     card: {
-        maxWidth: 275,
-        maxHeight: 200,
+        maxWidth: 180,
+        maxHeight: 250,
         minWidth: 180,
         minHeight: 250,
         margin: 10,
@@ -37,6 +37,11 @@ const divStyle = {
     justifyContent: 'center',
 }
 
+const imgStyle = {
+    height: '100px',
+    width: 'fit-content'
+}
+
 const priceStyle = {
     fontFamily: ''
 }
@@ -47,11 +52,11 @@ function SimpleCard(props) {
     return (
         <Card className={classes.card}>
             <CardContent>
-                <img src={source}/>
+                <img src={source} style={imgStyle} alt={symbol}/>
                 <br/>
                 <br/>
                 <Typography variant="headline" component="h2" align="center">
-                    {price}
+                    {symbol}
                 </Typography>
                 <div style={divStyle}>
                     <Bookmark/>

@@ -59,10 +59,17 @@ const data = [
     {
         name: 'Where',
         type: 'string',
-        enumerations: ['GrossProfit','CostOfRevenue','OperatingRevenue','TotalRevenue','OperatingIncome','NetIncome',
-            'ResearchAndDevelopment', 'OperatingExpense','CurrentAssets','TotalAssets','TotalLiabilities',
-            'CurrentCash','CurrentDebt','TotalCash','TotalDebt','ShareholderEquity','CashChange','CashFlow',
-            'OperatingGainsLosses']
+        enumerations: ['REPORT_DATE', 'COMPANY_NAME', 'TICKER_SYMBOL', 'GROSS_PROFIT', 'COST_OF_REVENUE',
+            'OPERATING_REVENUE', 'TOTAL_REVENUE', 'OPERATING_INCOME', 'NET_INCOME', 'RESEARCH_AND_DEVELOPMENT',
+            'OPERATING_EXPENSES', 'CURRENT_ASSETS', 'TOTAL_ASSETS', 'TOTAL_LIABILITIES', 'CURRENT_CASH',
+            'CURRENT_DEBT', 'TOTAL_CASH', 'TOTAL_DEBT', 'SHARE_HOLDER_EQUITY', 'CASH_CHANGE', 'CASH_FLOW',
+            'OPERATING_GAINS_LOSSES', 'MARKET_CAP', 'DIVIDEND_RATE', 'DIVIDEND_YIELD', 'CASH_TRAILING_TWELVE_MONTHS',
+            'DEBT_TRAILING_TWELVE_MONTHS', 'REVENUE_PER_SHARE_TRAILING_TWELVE_MONTHS',
+            'REVENUE_PER_EMPLOYEE_TRAILING_TWELVE_MONTHS', 'RETURN_ON_ASSETS_TRAILING_TWELVE_MONTHS',
+            'RETURN_ON_CAPITAL_TRAILING_TWELVE_MONTHS', 'PROFIT_MARGIN', 'PRICE_TO_SALES', 'PRICE_TO_BOOK',
+            'CURRENT_RATIO', 'CASH_RATIO', 'OPERATING_CASH_FLOW_RATIO', 'DEBT_RATIO', 'DEBT_TO_EQUITY_RATIO',
+            'DEBT_SERVICE_COVERAGE_RATIO', 'ASSET_TURNOVER_RATIO', 'GROSS_MARGIN_RATIO', 'OPERATING_MARGIN_RATIO',
+            'RETURN_ON_ASSETS_RATIO', 'RETURN_ON_EQUITY_RATIO' ]
     },
     {
         name: 'is',
@@ -75,15 +82,6 @@ const data = [
         enumerations: ['0.01','0.1','0.5','1','2','3', '4', '5','6','7','8', '9','10','15','20','25', '50','100',
             '$1,000,000','$10,000,000','$100,000,000','$1,000,000,000','$5,000,000,000','$10,000,000,000',
             '$50,000,000,000','$100,000,000,000','$200,000,000,000','$300,000,000,000','$500,000,000,000']
-    },
-    {
-        name: 'When',
-        type: 'string',
-        enumerations: ['CurrentRatio','Acid-TestRatio','CashRatio','OperatingCashFlowRatio','DebtRatio','DebtToEquityRatio',
-            'InterestCoverageRatio', 'DebtServiceCoverageRatio','AssetTurnoverRatio','InventoryTurnoverRatio',
-            'ReceivablesTurnoverRatio', 'DaysSalesInInventoryRatio','GrossMarginRatio','OperatingMarginRatio',
-            'ReturnOnAssetsRatio','ReturnOnEquityRatio', 'BookValuePerShareRatio','DividendYieldRatio',
-            'EarningsPerShareRatio','Price-EarningsRatio']
     }
 ]
 
@@ -99,7 +97,17 @@ class AssistSearch extends Component {
             {this.controller.setSymbol(response.data.Company[name]["Symbol"]);
                 this.controller.setPrice(response.data.Company[name]["Price"]);})})
             .catch(error => {console.log(error); })
+
     };
+
+    getData = (sql) => {
+        axios.get('http://localhost:8080/search', { crossdomain: true, params: {search: sql }})
+            .then(response => (response.data).map(company => {
+                this.controller.setSymbol(company.ticker_SYMBOL);
+                this.controller.setPrice(company.ticker_SYMBOL);
+            }))
+            .catch(error => {console.log(error)})
+    }
 
 
 
@@ -147,7 +155,7 @@ class AssistSearch extends Component {
                 <Assist
                     placeholder=
                         'Find:Top50Stocks Where:TotalRevenue is:greater Than:$100,000,000,000 When:DebtToEquityRatio is:less Than:2'
-                    onSubmit={query => {this.setData(); this.controller.clearController(); console.log(query)}}
+                    onSubmit={query => {this.getData(query); this.controller.clearController(); console.log(query)}}
                     data={data}
                     inputProps={inputProps}
                     dropdownProps={dropdownProps}
