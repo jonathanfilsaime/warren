@@ -49,9 +49,11 @@ const priceStyle = {
 function SimpleCard(props) {
     const { classes, price, symbol } = props;
     const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
+
     return (
         <Card className={classes.card}>
             <CardContent>
+                {console.log(source)} {console.log(<img src={source} style={imgStyle} alt={symbol}/>)}
                 <img src={source} style={imgStyle} alt={symbol}/>
                 <br/>
                 <br/>
