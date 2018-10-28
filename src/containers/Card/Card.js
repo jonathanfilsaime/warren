@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import Bookmark from './Bookmark'
 import Open from './Open'
 
@@ -46,8 +48,12 @@ const priceStyle = {
     fontFamily: ''
 }
 
+
+
 function SimpleCard(props) {
     const { classes, price, symbol } = props;
+    const value = false;
+    let object;
     const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
 
     return (

@@ -101,7 +101,7 @@ class AssistSearch extends Component {
     };
 
     getData = (sql) => {
-        axios.get('http://localhost:8080/search', { crossdomain: true, params: {search: sql }})
+        axios.get('http://localhost:8080/search/param', { crossdomain: true, params: {search: sql }})
             .then(response => (response.data).map(company => {
                 this.controller.setSymbol(company.ticker_SYMBOL);
                 this.controller.setPrice(company.ticker_SYMBOL);
