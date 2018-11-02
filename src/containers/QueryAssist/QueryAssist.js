@@ -54,7 +54,7 @@ const data = [
     {
         name: 'Find',
         type: 'string',
-        enumerations: ['Top10Stocks', 'Top50Stocks', 'Top100Stocks', 'AllStocks']
+        enumerations: ['TOP_10_STOCKS', 'TOP_50_STOCKS', 'TOP_100_STOCKS', 'ALL_STOCKS']
     },
     {
         name: 'Where',
