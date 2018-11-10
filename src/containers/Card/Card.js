@@ -50,29 +50,52 @@ const priceStyle = {
 
 
 
-function SimpleCard(props) {
-    const { classes, price, symbol } = props;
-    const value = false;
-    let object;
-    const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
+class SimpleCard extends React.Component {
+    state = {
+        open: false,
+    };
 
-    return (
-        <Card className={classes.card}>
-            <CardContent>
-                {console.log(source)} {console.log(<img src={source} style={imgStyle} alt={symbol}/>)}
-                <img src={source} style={imgStyle} alt={symbol}/>
-                <br/>
-                <br/>
-                <Typography variant="headline" component="h2" align="center">
-                    {symbol}
-                </Typography>
-                <div style={divStyle}>
-                    <Bookmark/>
-                    <Open/>
-                </div>
-            </CardContent>
-        </Card>
-    );
+    handleOpen = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
+    render() {
+        const { classes, price, symbol } = this.props;
+        const value = false;
+        let object;
+
+        const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
+
+        return (
+            <Card className={classes.card} onClick={this.handleOpen}>
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                >
+                    hello mate how are you
+                </Modal>
+                <CardContent>
+                    {console.log(source)} {console.log(<img src={source} style={imgStyle} alt={symbol}/>)}
+                    <img src={source} style={imgStyle} alt={symbol}/>
+                    <br/>
+                    <br/>
+                    <Typography variant="headline" component="h2" align="center">
+                        {symbol}
+                    </Typography>
+                    <div style={divStyle}>
+                        <Bookmark/>
+                        <Open/>
+                    </div>
+                </CardContent>
+            </Card>
+        );
+    }
 }
 
 SimpleCard.propTypes = {

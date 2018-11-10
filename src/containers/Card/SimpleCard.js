@@ -56,10 +56,11 @@ class SimpleCardClass extends Component {
 
         const items = this.parentController.getSymbol().map(symbol =>
         {
+            console.log(symbol)
 
-            return (<ButtonBase onClick={this.handleOpen} >
+            return (<ButtonBase key={symbol} >
                             {this.state.open ? <Paper/> : console.log("close")}
-                            <Card symbol={symbol} key={symbol}/>
+                            <Card symbol={symbol} />
                     </ButtonBase>);
 
         });
