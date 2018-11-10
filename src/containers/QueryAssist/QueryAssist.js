@@ -54,7 +54,7 @@ const data = [
     {
         name: 'Find',
         type: 'string',
-        enumerations: ['Top10Stocks', 'Top50Stocks', 'Top100Stocks', 'AllStocks']
+        enumerations: ['TOP_10_STOCKS', 'TOP_50_STOCKS', 'TOP_100_STOCKS', 'ALL_STOCKS']
     },
     {
         name: 'Where',
@@ -91,17 +91,8 @@ class AssistSearch extends Component {
         this.controller = new AppController(this);
     }
 
-    setData = () => {
-        axios.get('https://sherlock-warren-db.firebaseio.com/.json', { crossdomain: true })
-            .then(response => {Object.keys(response.data.Company).map(name =>
-            {this.controller.setSymbol(response.data.Company[name]["Symbol"]);
-                this.controller.setPrice(response.data.Company[name]["Price"]);})})
-            .catch(error => {console.log(error); })
-
-    };
-
     getData = (sql) => {
-        axios.get('http://localhost:8080/search/param', { crossdomain: true, params: {search: sql }})
+        axios.get('https://sherlock-220614.appspot.com/search/param', { crossdomain: true, params: {search: sql }})
             .then(response => (response.data).map(company => {
                 this.controller.setSymbol(company.ticker_SYMBOL);
                 this.controller.setPrice(company.ticker_SYMBOL);
