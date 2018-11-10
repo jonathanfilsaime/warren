@@ -72,14 +72,14 @@ class SimpleCard extends React.Component {
 
         return (
             <Card className={classes.card} onClick={this.handleOpen}>
-                <Modal
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                >
-                    hello mate how are you
-                </Modal>
+                {/*<Modal*/}
+                    {/*aria-labelledby="simple-modal-title"*/}
+                    {/*aria-describedby="simple-modal-description"*/}
+                    {/*open={this.state.open}*/}
+                    {/*onClose={this.handleClose}*/}
+                {/*>*/}
+                    {/*hello mate how are you*/}
+                {/*</Modal>*/}
                 <CardContent>
                     {console.log(source)} {console.log(<img src={source} style={imgStyle} alt={symbol}/>)}
                     <img src={source} style={imgStyle} alt={symbol}/>
