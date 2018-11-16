@@ -93,14 +93,9 @@ class AssistSearch extends Component {
 
     getData = (sql) => {
         axios.get('https://sherlock-220614.appspot.com/search/param', { crossdomain: true, params: {search: sql }})
-            .then(response => (response.data).map(company => {
-                this.controller.setSymbol(company.ticker_SYMBOL);
-                this.controller.setPrice(company.ticker_SYMBOL);
-            }))
+            .then(response => (response.data).map(company => {this.controller.setSymbol(company.ticker_SYMBOL);}))
             .catch(error => {console.log(error)})
     }
-
-
 
     render () {
         const inputProps = {
@@ -141,9 +136,12 @@ class AssistSearch extends Component {
             </Footer>
         )
 
+
+
         return (
             <Container>
                 <Assist
+                    // onChange = {(e) => { console.log("**********" , e.contains)}}
                     placeholder=
                         'Find:Top50Stocks Where:TotalRevenue is:greater Than:$100,000,000,000 When:DebtToEquityRatio is:less Than:2'
                     onSubmit={query => {this.getData(query); this.controller.clearController(); console.log(query)}}

@@ -6,8 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Bookmark from './Bookmark'
-import Open from './Open'
+import Bookmark from '../Icons/Bookmark'
+import Open from '../Icons/Open'
+import SimpleTabs from '../Tabs/SimpleTabs'
 
 const styles = {
     card: {
@@ -44,16 +45,22 @@ const imgStyle = {
     width: 'fit-content'
 }
 
-const priceStyle = {
-    fontFamily: ''
-}
+function getModalStyle(){
+    const top = -1500;
+    const left = -1500;
 
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+    };
+}
 
 
 class SimpleCard extends React.Component {
     state = {
         open: false,
     };
+
 
     handleOpen = () => {
         this.setState({ open: true });
@@ -63,38 +70,43 @@ class SimpleCard extends React.Component {
         this.setState({ open: false });
     };
 
+
+
     render() {
-        const { classes, price, symbol } = this.props;
-        const value = false;
-        let object;
+        const { classes, symbol } = this.props;
+        console.log(this.state)
 
         const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
 
-        return (
-            <Card className={classes.card} onClick={this.handleOpen}>
-                {/*<Modal*/}
-                    {/*aria-labelledby="simple-modal-title"*/}
-                    {/*aria-describedby="simple-modal-description"*/}
-                    {/*open={this.state.open}*/}
-                    {/*onClose={this.handleClose}*/}
-                {/*>*/}
-                    {/*hello mate how are you*/}
-                {/*</Modal>*/}
-                <CardContent>
-                    {console.log(source)} {console.log(<img src={source} style={imgStyle} alt={symbol}/>)}
-                    <img src={source} style={imgStyle} alt={symbol}/>
-                    <br/>
-                    <br/>
-                    <Typography variant="headline" component="h2" align="center">
-                        {symbol}
-                    </Typography>
-                    <div style={divStyle}>
-                        <Bookmark/>
-                        <Open/>
-                    </div>
-                </CardContent>
-            </Card>
-        );
+            return (
+                <ButtonBase key={symbol} onClick={this.handleOpen}>
+                    <Card className={classes.card} onClick={this.handleOpen}>
+                        <Modal
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                        >
+                            <div style={getModalStyle()}>
+                                <SimpleTabs />
+                            </div>
+                        </Modal>
+                        <CardContent>
+                            {console.log(source)} {console.log(<img src={source} style={imgStyle} alt={symbol}/>)}
+                            <img src={source} style={imgStyle} alt={symbol}/>
+                            <br/>
+                            <br/>
+                            <Typography variant="headline" component="h2" align="center">
+                                {symbol}
+                            </Typography>
+                            <div style={divStyle}>
+                                <Bookmark/>
+                                <Open/>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </ButtonBase>
+            );
     }
 }
 
