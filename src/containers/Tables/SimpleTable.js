@@ -22,7 +22,7 @@ const styles = theme => ({
     },
 });
 
-const financialsRows = [];
+let financialsRows = [];
 
 const returnFinancialsRows = () =>
 {
@@ -35,7 +35,7 @@ function createFinancialData(financial, amount) {
     financialsRows.push({ financialId, financial, amount});
 }
 
-const keyStatsRows = [];
+let keyStatsRows = [];
 
 const returnkeyStatsRows = () =>
 {
@@ -66,6 +66,7 @@ class SimpleTable extends React.Component {
     getFinancials = (symbol) => {
         axios.get(`https://api.iextrading.com/1.0/stock/${symbol}/financials?period=annual`)
             .then(response => {
+                financialsRows = [];
                 createFinancialData("reportDate", response.data.financials[0].reportDate);
                 createFinancialData("grossProfit", response.data.financials[0].grossProfit);
                 createFinancialData("costOfRevenue", response.data.financials[0].costOfRevenue);
@@ -96,6 +97,7 @@ class SimpleTable extends React.Component {
     getKeyStats = (symbol) => {
         axios.get(`https://api.iextrading.com/1.0/stock/${symbol}/stats`)
             .then(response => {
+                keyStatsRows = [];
                 createkeyStatsData("companyName", response.data.companyName);
                 createkeyStatsData("marketcap", response.data.marketcap);
                 createkeyStatsData("beta", response.data.beta);

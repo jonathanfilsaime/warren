@@ -112,7 +112,6 @@ class SimpleCard extends React.Component {
                         onClose={this.handleClose}
                     >
                         <div style={getModalStyle()}>
-                            {/*<Paper />*/}
                             <SimpleTabs symbol={symbol} onClose={this.handleClose}/>
                         </div>
                     </Modal>
