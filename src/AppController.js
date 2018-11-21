@@ -12,6 +12,7 @@ class AppController extends Controller{
 
 
     setSymbol(value){
+        console.log('#########', this.state)
         this.state.symbol.push(value);
     }
 

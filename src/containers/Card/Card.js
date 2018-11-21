@@ -6,9 +6,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Bookmark from '../Icons/Bookmark'
-import Open from '../Icons/Open'
-import SimpleTabs from '../Tabs/SimpleTabs'
+import Bookmark from '../Icons/Bookmark';
+import Open from '../Icons/Open';
+import Paper from '../Paper/Paper';
+import SimpleTabs from '../Tabs/SimpleTabs';
+import {Controller} from "controllerim";
+import AppController from "../../AppController";
 
 const styles = {
     card: {
@@ -57,12 +60,16 @@ function getModalStyle(){
 
 
 class SimpleCard extends React.Component {
-    state = {
+
+
+
+        state = {
         open: false,
     };
 
 
     handleOpen = () => {
+        console.log('onCLick of card')
         this.setState({ open: true });
     };
 
@@ -79,18 +86,10 @@ class SimpleCard extends React.Component {
         const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
 
             return (
+                <React.Fragment>
                 <ButtonBase key={symbol} onClick={this.handleOpen}>
-                    <Card className={classes.card} onClick={this.handleOpen}>
-                        <Modal
-                            aria-labelledby="simple-modal-title"
-                            aria-describedby="simple-modal-description"
-                            open={this.state.open}
-                            onClose={this.handleClose}
-                        >
-                            <div style={getModalStyle()}>
-                                <SimpleTabs />
-                            </div>
-                        </Modal>
+                    <Card className={classes.card} >
+
                         <CardContent>
                             {console.log(source)} {console.log(<img src={source} style={imgStyle} alt={symbol}/>)}
                             <img src={source} style={imgStyle} alt={symbol}/>
@@ -106,6 +105,18 @@ class SimpleCard extends React.Component {
                         </CardContent>
                     </Card>
                 </ButtonBase>
+                    <Modal
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                    >
+                        <div style={getModalStyle()}>
+                            {/*<Paper />*/}
+                            <SimpleTabs symbol={symbol} onClose={this.handleClose}/>
+                        </div>
+                    </Modal>
+                </React.Fragment>
             );
     }
 }

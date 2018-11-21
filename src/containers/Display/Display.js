@@ -8,13 +8,12 @@ import Card from '../Card/SimpleCard';
 class display extends Component {
     componentWillMount() {
         this.parentController =  Controller.getParentController(this, AppController.name);
-        console.log("-------> HELLO <--------")
         console.log(this.parentController)
     }
 
     render(){
         return (<div className="Display">
-                    <Card symbol={this.parentController.getSymbol()}/>
+                    <Card />
                 </div>);
     }
 

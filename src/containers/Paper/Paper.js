@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import SimpleTable from '../Tables/SimpleTable'
 
 const styles = theme => ({
     root: {
@@ -22,7 +23,7 @@ function PaperSheet(props) {
                     This is a sheet of paper.
                 </Typography>
                 <Typography component="p">
-                    Paper can be used to build surface or other elements for your application.
+                    <SimpleTable/>
                 </Typography>
             </Paper>
         </div>
