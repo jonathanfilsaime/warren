@@ -7,11 +7,11 @@ import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Bookmark from '../Icons/Bookmark';
+import Bookmarked from '../Icons/Bookmarked';
 import Open from '../Icons/Open';
-import Paper from '../Paper/Paper';
 import SimpleTabs from '../Tabs/SimpleTabs';
-import {Controller} from "controllerim";
-import AppController from "../../AppController";
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/core/Icon';
 
 const styles = {
     card: {
@@ -48,23 +48,11 @@ const imgStyle = {
     width: 'fit-content'
 }
 
-function getModalStyle(){
-    const top = -1500;
-    const left = -1500;
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-    };
-}
-
 
 class SimpleCard extends React.Component {
-
-
-
         state = {
-        open: false,
+            open: false,
+            selected: false,
     };
 
 
@@ -77,7 +65,15 @@ class SimpleCard extends React.Component {
         this.setState({ open: false });
     };
 
+    handleClick = () => {
+        console.log("***** here is the symbol", this.props.symbol);
+        this.setState({selected : !this.state.selected});
+    }
 
+    bookmark = () =>
+    {
+        return (this.state.selected ? <Bookmarked/> : <Bookmark/>);
+    }
 
     render() {
         const { classes, symbol } = this.props;
@@ -87,7 +83,6 @@ class SimpleCard extends React.Component {
 
             return (
                 <React.Fragment>
-                <ButtonBase key={symbol} onClick={this.handleOpen}>
                     <Card className={classes.card} >
 
                         <CardContent>
@@ -99,19 +94,22 @@ class SimpleCard extends React.Component {
                                 {symbol}
                             </Typography>
                             <div style={divStyle}>
-                                <Bookmark/>
-                                <Open/>
+                                <IconButton onClick={this.handleClick}>
+                                    {this.bookmark()}
+                                </IconButton>
+                                <ButtonBase key={symbol} onClick={this.handleOpen}>
+                                    <Open/>
+                                </ButtonBase>
                             </div>
                         </CardContent>
                     </Card>
-                </ButtonBase>
                     <Modal
                         aria-labelledby="simple-modal-title"
                         aria-describedby="simple-modal-description"
                         open={this.state.open}
                         onClose={this.handleClose}
                     >
-                        <div style={getModalStyle()}>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
                             <SimpleTabs symbol={symbol} onClose={this.handleClose}/>
                         </div>
                     </Modal>

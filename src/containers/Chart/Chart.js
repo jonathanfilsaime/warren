@@ -20,7 +20,7 @@ class Graph extends React.Component {
 
     getData = (symbol) => {
         axios.get(`https://api.iextrading.com/1.0/stock/${symbol}/chart/5y`)
-            .then(response => {data = []; (response.data).map(info => {data.push({value: info.close, argument: info.date })})})
+            .then(response => {data = []; (response.data).map(info => {data.push({value: info.close, argument: info.date })}); this.setState({ data : data});})
             .catch(error => {console.log(error)})
     }
 
@@ -31,7 +31,7 @@ class Graph extends React.Component {
     render() {
         return (
             <Paper>
-                <Chart data={data} width={650} height={500}>
+                <Chart data={this.state.data} >
                     <ValueAxis />
                     <SplineSeries valueField="value" argumentField="argument" />
                     <Scale />

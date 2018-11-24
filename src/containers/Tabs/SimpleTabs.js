@@ -25,7 +25,7 @@ const styles = theme => ({
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
         position: 'absolute',
-        width: theme.spacing.unit * 100,
+        width: `80%`,
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
     },
