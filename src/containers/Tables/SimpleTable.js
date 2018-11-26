@@ -51,9 +51,9 @@ function createkeyStatsData(keyStats, amount) {
 }
 
 class SimpleTable extends React.Component {
-    componentWillMount() {
-        this.controller = new CardController(this);
-    }
+    // componentWillMount() {
+    //     this.controller = new CardController(this);
+    // }
 
 
     constructor(props) {
@@ -165,7 +165,7 @@ class SimpleTable extends React.Component {
         const { classes, symbol } = this.props;
         const { rows } = this.state;
 
-        if(this.controller.getCardFinancials())
+
 
         if(this.props.label == "Financials")
         {

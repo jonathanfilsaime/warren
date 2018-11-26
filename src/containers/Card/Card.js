@@ -5,13 +5,11 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import Bookmark from '../Icons/Bookmark';
 import Bookmarked from '../Icons/Bookmarked';
 import Open from '../Icons/Open';
 import SimpleTabs from '../Tabs/SimpleTabs';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/core/Icon';
 
 const styles = {
     card: {
@@ -55,9 +53,17 @@ class SimpleCard extends React.Component {
             selected: false,
     };
 
+    componentDidMount(){
+      if(this.props.index == 1)
+      {
+
+      }
+
+    };
+
+
 
     handleOpen = () => {
-        console.log('onCLick of card')
         this.setState({ open: true });
     };
 
@@ -66,7 +72,6 @@ class SimpleCard extends React.Component {
     };
 
     handleClick = () => {
-        console.log("***** here is the symbol", this.props.symbol);
         this.setState({selected : !this.state.selected});
     }
 
@@ -76,30 +81,27 @@ class SimpleCard extends React.Component {
     }
 
     render() {
-        const { classes, symbol } = this.props;
-        console.log(this.state)
+        const { classes } = this.props;
 
-        const source = `https://storage.googleapis.com/iex/api/logos/${symbol}.png`;
+        const source = `https://storage.googleapis.com/iex/api/logos/${this.props.symbol}.png`;
 
             return (
                 <React.Fragment>
                     <Card className={classes.card} >
-
                         <CardContent>
-                            {console.log(source)} {console.log(<img src={source} style={imgStyle} alt={symbol}/>)}
-                            <img src={source} style={imgStyle} alt={symbol}/>
+                            <img src={source} style={imgStyle} alt={this.props.symbol}/>
                             <br/>
                             <br/>
                             <Typography variant="headline" component="h2" align="center">
-                                {symbol}
+                                {this.props.symbol}
                             </Typography>
                             <div style={divStyle}>
-                                <IconButton onClick={this.handleClick}>
+                                <IconButton buttonRef={(element) => {if(element && this.props.index === 0) {element.focus()}} } onClick={this.handleClick}>
                                     {this.bookmark()}
                                 </IconButton>
-                                <ButtonBase key={symbol} onClick={this.handleOpen}>
+                                <IconButton onClick={this.handleOpen}>
                                     <Open/>
-                                </ButtonBase>
+                                </IconButton>
                             </div>
                         </CardContent>
                     </Card>
@@ -110,7 +112,7 @@ class SimpleCard extends React.Component {
                         onClose={this.handleClose}
                     >
                         <div style={{display: 'flex', justifyContent: 'center'}}>
-                            <SimpleTabs symbol={symbol} onClose={this.handleClose}/>
+                            <SimpleTabs symbol={this.props.symbol} onClose={this.handleClose}/>
                         </div>
                     </Modal>
                 </React.Fragment>

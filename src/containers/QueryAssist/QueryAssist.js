@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
-import styled from 'react-emotion'
-import { injectGlobal } from 'emotion'
-import QueryAssist from 'react-query-assist'
-import { observer } from 'controllerim';
-import AppController from '../../AppController'
-import Display from "../Display/Display";
+import React, { Component } from 'react';
+import styled from 'react-emotion';
+import { injectGlobal } from 'emotion';
+import QueryAssist from 'react-query-assist';
+import Display from '../Display/Display';
 import axios from 'axios';
 
 injectGlobal`
@@ -50,7 +48,7 @@ export const Link = styled('a')`
   cursor: pointer;
 `
 
-const data = [
+let data = [
     {
         name: 'Find',
         type: 'string',
@@ -86,14 +84,13 @@ const data = [
 ]
 
 class AssistSearch extends Component {
-
-    componentWillMount() {
-        this.controller = new AppController(this);
+    state = {
+        symbols: []
     }
 
     getData = (sql) => {
-        axios.get('https://sherlock-220614.appspot.com/search/param', { crossdomain: true, params: {search: sql }})
-            .then(response => (response.data).map(company => {this.controller.setSymbol(company.ticker_SYMBOL);}))
+        axios.get('http://localhost:8080/search/param', { crossdomain: true, params: {search: sql }})
+            .then(response => {(this.setState({ symbols: response.data})); console.log(" state ", this.state.symbols)})
             .catch(error => {console.log(error)})
     }
 
@@ -144,17 +141,17 @@ class AssistSearch extends Component {
                     // onChange = {(e) => { console.log("**********" , e.contains)}}
                     placeholder=
                         'Find:Top50Stocks Where:TotalRevenue is:greater Than:$100,000,000,000 When:DebtToEquityRatio is:less Than:2'
-                    onSubmit={query => {this.getData(query); this.controller.clearController(); console.log(query)}}
+                    onSubmit={query => {this.getData(query); console.log(query)}}
                     data={data}
                     inputProps={inputProps}
                     dropdownProps={dropdownProps}
                     selectorProps={selectorProps}
                     footerComponent={footer} />
-                <Display/>
+                <Display symbols={this.state.symbols}/>
             </Container>
         )
 
     }
 }
 
-export default observer(AssistSearch);
+export default AssistSearch;

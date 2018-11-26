@@ -1,22 +1,15 @@
 import React, {Component} from 'react';
-import { observer} from 'controllerim';
-import {Controller} from 'controllerim';
 import './Display.css';
-import AppController from '../../AppController';
 import Card from '../Card/SimpleCard';
 
 class display extends Component {
-    componentWillMount() {
-        this.parentController =  Controller.getParentController(this, AppController.name);
-        console.log(this.parentController)
-    }
 
     render(){
         return (<div className="Display">
-                    <Card />
+                    <Card symbols={this.props.symbols}/>
                 </div>);
     }
 
 };
 
-export default observer(display);
+export default display;

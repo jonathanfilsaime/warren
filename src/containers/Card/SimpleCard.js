@@ -1,25 +1,14 @@
-import {Component} from "react";
-import {Controller, observer} from "controllerim";
-import AppController from "../../AppController";
-import "./example.css"
-import Card from "./Card"
-import React from "react";
-
+import {Component} from 'react';
+import './example.css';
+import Card from './Card';
+import React from 'react';
 
 class SimpleCardClass extends Component {
 
-    componentWillMount() {
-        this.parentController =  Controller.getParentController(this, AppController.name);
-    }
-
     render(){
-
-        const items = this.parentController.getSymbol().map(symbol =>
+        const items = this.props.symbols.map((symbol, index) =>
         {
-            console.log(symbol)
-
-            return (<Card key={symbol} symbol={symbol} />);
-
+            return (<Card index={index} key={symbol.TICKER_SYMBOL} symbol={symbol.TICKER_SYMBOL} />);
         });
 
         return (
@@ -30,5 +19,5 @@ class SimpleCardClass extends Component {
     }
 }
 
-export default observer(SimpleCardClass);
+export default SimpleCardClass;
 
