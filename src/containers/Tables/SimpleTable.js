@@ -8,8 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import axios from "axios";
-import CardController from "../../CardController";
-import { observer} from 'controllerim';
 
 const styles = theme => ({
     root: {
@@ -44,6 +42,14 @@ const returnkeyStatsRows = () =>
     return keyStatsRows;
 }
 
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    // the default value for minimumFractionDigits depends on the currency
+    // and is usually already 2
+});
+
 let keyStatsId = 0;
 function createkeyStatsData(keyStats, amount) {
     keyStatsId += 1;
@@ -51,10 +57,6 @@ function createkeyStatsData(keyStats, amount) {
 }
 
 class SimpleTable extends React.Component {
-    // componentWillMount() {
-    //     this.controller = new CardController(this);
-    // }
-
 
     constructor(props) {
         super(props);
@@ -70,21 +72,21 @@ class SimpleTable extends React.Component {
             .then(response => {
                 financialsRows = [];
                 createFinancialData("reportDate", response.data.financials[0].reportDate);
-                createFinancialData("grossProfit", response.data.financials[0].grossProfit);
+                createFinancialData("grossProfit", formatter.format(response.data.financials[0].grossProfit));
                 // createFinancialData("costOfRevenue", response.data.financials[0].costOfRevenue);
                 // createFinancialData("operatingRevenue", response.data.financials[0].operatingRevenue);
                 // createFinancialData("totalRevenue", response.data.financials[0].totalRevenue);
-                createFinancialData("operatingIncome", response.data.financials[0].operatingIncome);
-                createFinancialData("netIncome", response.data.financials[0].netIncome);
+                createFinancialData("operatingIncome", formatter.format(response.data.financials[0].operatingIncome));
+                createFinancialData("netIncome", formatter.format(response.data.financials[0].netIncome));
                 // createFinancialData("researchAndDevelopment", response.data.financials[0].researchAndDevelopment);
-                createFinancialData("operatingExpense", response.data.financials[0].operatingExpense);
-                createFinancialData("currentAssets", response.data.financials[0].currentAssets);
-                createFinancialData("totalAssets", response.data.financials[0].totalAssets);
-                createFinancialData("totalLiabilities", response.data.financials[0].totalLiabilities);
+                createFinancialData("operatingExpense", formatter.format(response.data.financials[0].operatingExpense));
+                createFinancialData("currentAssets", formatter.format(response.data.financials[0].currentAssets));
+                createFinancialData("totalAssets", formatter.format(response.data.financials[0].totalAssets));
+                createFinancialData("totalLiabilities", formatter.format(response.data.financials[0].totalLiabilities));
                 // createFinancialData("currentCash", response.data.financials[0].currentCash);
                 // createFinancialData("currentDebt", response.data.financials[0].currentDebt);
-                createFinancialData("totalCash", response.data.financials[0].totalCash);
-                createFinancialData("totalDebt", response.data.financials[0].totalDebt);
+                createFinancialData("totalCash", formatter.format(response.data.financials[0].totalCash));
+                createFinancialData("totalDebt", formatter.format(response.data.financials[0].totalDebt));
                 // createFinancialData("shareholderEquity", response.data.financials[0].shareholderEquity);
                 // createFinancialData("cashChange", response.data.financials[0].cashChange);
                 // createFinancialData("cashFlow", response.data.financials[0].cashFlow);
@@ -101,7 +103,7 @@ class SimpleTable extends React.Component {
             .then(response => {
                 keyStatsRows = [];
                 createkeyStatsData("companyName", response.data.companyName);
-                createkeyStatsData("marketcap", response.data.marketcap);
+                createkeyStatsData("marketcap", formatter.format(response.data.marketcap));
                 // createkeyStatsData("beta", response.data.beta);
                 // createkeyStatsData("week52high", response.data.week52high);
                 // createkeyStatsData("week52low", response.data.week52low);
@@ -119,13 +121,13 @@ class SimpleTable extends React.Component {
                 // createkeyStatsData("consensusEPS", response.data.consensusEPS);
                 // createkeyStatsData("numberOfEstimates", response.data.numberOfEstimates);
                 // createkeyStatsData("symbol", response.data.symbol);
-                createkeyStatsData("EBITDA", response.data.EBITDA);
+                createkeyStatsData("EBITDA", formatter.format(response.data.EBITDA));
                 // createkeyStatsData("revenue", response.data.revenue);
                 // createkeyStatsData("grossProfit", response.data.grossProfit);
                 // createkeyStatsData("cash", response.data.cash);
                 // createkeyStatsData("debt", response.data.debt);
                 // createkeyStatsData("ttmEPS", response.data.ttmEPS);
-                createkeyStatsData("revenuePerShare", response.data.revenuePerShare);
+                createkeyStatsData("revenuePerShare", formatter.format(response.data.revenuePerShare));
                 // createkeyStatsData("revenuePerEmployee", response.data.revenuePerEmployee);
                 // createkeyStatsData("peRatioHigh", response.data.peRatioHigh);
                 // createkeyStatsData("peRatioLow", response.data.peRatioLow);
@@ -171,7 +173,6 @@ class SimpleTable extends React.Component {
         {
             return (
                 <Paper className={classes.root}>
-                    {console.log("label: -------> ", this.props.label)}
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
@@ -194,13 +195,11 @@ class SimpleTable extends React.Component {
                     </Table>
                 </Paper>
             );
-
         }
         else
         {
             return (
                 <Paper className={classes.root}>
-                    {console.log("label: -------> ", this.props.label)}
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
@@ -232,4 +231,4 @@ SimpleTable.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(observer(SimpleTable));
+export default withStyles(styles)(SimpleTable);

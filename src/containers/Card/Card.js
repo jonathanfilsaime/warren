@@ -96,7 +96,7 @@ class SimpleCard extends React.Component {
                                 {this.props.symbol}
                             </Typography>
                             <div style={divStyle}>
-                                <IconButton buttonRef={(element) => {if(element && this.props.index === 0) {element.focus()}} } onClick={this.handleClick}>
+                                <IconButton onClick={this.handleClick}>
                                     {this.bookmark()}
                                 </IconButton>
                                 <IconButton onClick={this.handleOpen}>

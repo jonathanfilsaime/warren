@@ -3,7 +3,9 @@ import styled from 'react-emotion';
 import { injectGlobal } from 'emotion';
 import QueryAssist from 'react-query-assist';
 import Display from '../Display/Display';
+import CircularDeterminate from '../Loading/CircularDeterminate';
 import axios from 'axios';
+import IconButton from "@material-ui/core/IconButton/IconButton";
 
 injectGlobal`
   * {
@@ -85,12 +87,14 @@ let data = [
 
 class AssistSearch extends Component {
     state = {
+        loading: false,
         symbols: []
     }
 
     getData = (sql) => {
-        axios.get('http://localhost:8080/search/param', { crossdomain: true, params: {search: sql }})
-            .then(response => {(this.setState({ symbols: response.data})); console.log(" state ", this.state.symbols)})
+        this.setState({loading: true})
+        axios.get('https://sherlock-220614.appspot.com/search/param', { crossdomain: true, params: {search: sql }})
+            .then(response => {(this.setState({ symbols: response.data})); console.log(" state ", this.state.symbols); this.setState({loading: false})})
             .catch(error => {console.log(error)})
     }
 
@@ -147,7 +151,11 @@ class AssistSearch extends Component {
                     dropdownProps={dropdownProps}
                     selectorProps={selectorProps}
                     footerComponent={footer} />
-                <Display symbols={this.state.symbols}/>
+                {this.state.loading ? <div style={{display: 'flex', justifyContent: 'center'}}><CircularDeterminate/></div> : <Display symbols={this.state.symbols}/>}
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <IconButton buttonRef={(element) => {if(element) {element.focus()}}} >
+                    </IconButton>
+                </div>
             </Container>
         )
 
