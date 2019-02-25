@@ -89,7 +89,7 @@ class AssistSearch extends Component {
     }
 
     getData = (sql) => {
-        axios.get('http://localhost:8080/search/param', { crossdomain: true, params: {search: sql }})
+        axios.get('https://sherlock-220614.appspot.com/search/param', { crossdomain: true, params: {search: sql }})
             .then(response => {(this.setState({ symbols: response.data})); console.log(" state ", this.state.symbols)})
             .catch(error => {console.log(error)})
     }
