@@ -9,7 +9,13 @@ class LoginCard extends React.Component{
 
 
     render(){
-      return (
+        const divStyle = {
+            marginTop: '200px',
+            marginLeft: '700px'
+        };
+
+        return (
+          <div style={divStyle}>
           <div className="ui middle aligned center aligned grid">
               <div className="column">
                   <div className="ui raised very padded text container segment">
@@ -23,6 +29,7 @@ class LoginCard extends React.Component{
                       <FacebookAuth/>
                   </div>
               </div>
+          </div>
           </div>
 
       );
