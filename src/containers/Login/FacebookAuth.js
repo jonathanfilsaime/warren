@@ -43,16 +43,19 @@ class FacebookAuth extends Component {
 
         if(this.state.isLoggedIn){
             fbContent = (
-                // <div onClick={this.logOut} className="ui blue facebook button">
-                // <i class="facebook icon"></i>
-                //     Log out
-                // </div>
-                <Redirect to="/app"/>
-
+                <Redirect to={{
+                    pathname: "/app",
+                    state: {
+                        isLoggedIn: true,
+                        userID: response.userID,
+                        name: response.name,
+                        email: response.email,
+                        picture: response.picture.data.url
+                    }
+                }}/>
             )
         }else{
             fbContent = (
-                
                 <FacebookLogin
                     appId="339754106747665"
                     autoLoad={true}
@@ -65,7 +68,6 @@ class FacebookAuth extends Component {
                             Login with Facebook
                         </button>
                       )} />
-                
             )
         }
 
