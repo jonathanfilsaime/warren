@@ -4,7 +4,7 @@ import QueryAssist from './containers/QueryAssist/QueryAssist';
 class App extends Component {
   render() {
     return (
-      <div >
+      <div>
           <QueryAssist/>
       </div>
     );
